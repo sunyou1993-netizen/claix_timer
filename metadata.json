@@ -1,0 +1,8 @@
+{
+  "name": "Focus Bear Timer",
+  "description": "A cute and simple focus timer to help you stay productive with a friendly bear companion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

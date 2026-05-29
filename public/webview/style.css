@@ -1,0 +1,417 @@
+:root {
+    --bg-color: #EDF4FF;
+    --white: #FFFFFF;
+    --primary: #0056FF;
+    --primary-gradient: linear-gradient(135deg, #1A75FF 0%, #0056FF 100%);
+    --danger-gradient: linear-gradient(135deg, #FF6B6B 0%, #EE5253 100%);
+    --text-main: #333333;
+    --text-secondary: #666666;
+    --border-color: #E0E7F1;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+    --radius-lg: 48px;
+    --radius-md: 28px;
+    --radius-sm: 20px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: var(--text-main);
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    max-width: 100%;
+}
+
+header {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 32px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    color: var(--text-main);
+}
+
+.back-btn svg {
+    width: 44px;
+    height: 44px;
+    margin-right: 12px;
+}
+
+.close-btn {
+    padding: 14px 32px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background: white;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.close-btn:active {
+    background-color: #f5f5f5;
+}
+
+/* Main Card */
+.main-card {
+    flex: 1;
+    background-color: var(--white);
+    margin: 0 20px 24px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 60px 80px; /* Added padding-bottom to prevent settings section from clipping or cutting off */
+    position: relative;
+    justify-content: start;
+    gap: 60px;
+    min-height: 0;
+    overflow-y: auto;
+}
+
+/* Timer Display: Lowered text as requested ("타이머 숫자 위치 조금 내려줘") */
+.time-display {
+    font-size: 140px;
+    font-weight: 800;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -4px;
+    line-height: 1;
+    margin-top: 100px; /* Increased top-margin to push digits down slightly */
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+.timer-circle-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.progress-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-bg {
+    fill: none;
+    stroke: #F0F4F9;
+    stroke-width: 14;
+}
+
+.progress-bar {
+    fill: none;
+    stroke: var(--primary);
+    stroke-width: 14;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.3s linear;
+}
+
+.character-img {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    object-fit: contain;
+    left: 50%;
+    top: 72%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    transition: transform 0.2s ease-in-out;
+}
+
+.speech-bubble {
+    position: absolute;
+    top: 100px;
+    background-color: white;
+    padding: 16px 32px;
+    border-radius: 24px;
+    box-shadow: 0 6px 18px rgba(0, 108, 255, 0.15);
+    text-align: center;
+    font-size: 28px;
+    color: var(--primary);
+    font-weight: 600;
+    line-height: 1.4;
+    z-index: 3;
+    border: 1px solid rgba(0, 108, 255, 0.1);
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid white;
+}
+
+/* Settings Sections: Adding bottom-padding to settings block as requested to prevent cut-off */
+.settings-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 0;
+    padding-bottom: 30px; /* Added bottom margin/padding so quick choices and settings don't clip */
+    flex-shrink: 0;
+}
+
+.setting-box {
+    background-color: #F9FBFE;
+    border: 1px solid #EEF2F7;
+    border-radius: var(--radius-md);
+    padding: 32px;
+}
+
+.setting-title {
+    display: flex;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--text-secondary);
+}
+
+.setting-title svg {
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+    color: var(--primary);
+}
+
+.adjust-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.adjust-item {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 16px;
+    padding: 8px 16px;
+    border: 1px solid #EBEFF5;
+}
+
+.adjust-item button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 36px;
+    width: 54px;
+    height: 54px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adjust-item span {
+    flex: 1;
+    text-align: center;
+    font-weight: 700;
+    font-size: 33px;
+}
+
+.adjust-item .unit-label {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+.quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.quick-btn {
+    background: white;
+    border: 1px solid #E9F0F8;
+    border-radius: 12px;
+    padding: 24px 0;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.quick-btn.active {
+    background: var(--primary-gradient);
+    color: white;
+    border-color: transparent;
+    font-weight: 700;
+}
+
+/* Bottom Action - Width identical to modal above ("모달 가로 길이랑 똑같이 맞춰줘") */
+.bottom-action {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 20px;
+    padding: 0;
+    margin: 0 20px 40px; /* Margins identical to the modal card for alignment */
+    flex-shrink: 0;
+}
+
+.action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border: none;
+    border-radius: 32px;
+    padding: 24px 0;
+    cursor: pointer;
+    color: var(--text-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    border: 1px solid #F0F4F8;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 150px;
+}
+
+.action-btn:active {
+    transform: scale(0.96);
+    background-color: #F9FBFE;
+}
+
+.action-item-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.action-btn span {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.action-btn.primary-action {
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    box-shadow: 0 8px 20px rgba(0, 108, 255, 0.25);
+}
+
+.action-btn.primary-action.stop-mode {
+    background: var(--danger-gradient);
+    box-shadow: 0 8px 20px rgba(238, 82, 83, 0.3);
+}
+
+.action-btn.primary-action:active {
+    opacity: 0.9;
+}
+
+.action-item-icon svg {
+    width: 48px;
+    height: 48px;
+}
+
+/* Animations */
+.main-card.focus-mode {
+    animation: card-breathing-glow 2.5s infinite ease-in-out;
+    border-color: rgba(0, 108, 255, 0.25);
+}
+
+@keyframes card-breathing-glow {
+    0% { box-shadow: var(--shadow), 0 0 0 0px rgba(0, 108, 255, 0.15); }
+    50% { box-shadow: var(--shadow), 0 0 25px 10px rgba(0, 108, 255, 0.2); }
+    100% { box-shadow: var(--shadow), 0 0 0 0px rgba(0, 108, 255, 0.15); }
+}
+
+.speech-bubble.focus-mode {
+    background-color: #EDF4FF;
+    animation: bubble-breathing-glow 2.5s infinite ease-in-out;
+    border-color: rgba(0, 108, 255, 0.3);
+}
+
+.speech-bubble.focus-mode::after {
+    border-top-color: #EDF4FF;
+}
+
+@keyframes bubble-breathing-glow {
+    0% { box-shadow: 0 4px 12px rgba(0, 108, 255, 0.1), 0 0 0 0px rgba(0, 108, 255, 0.25); }
+    50% { box-shadow: 0 4px 12px rgba(0, 108, 255, 0.1), 0 0 20px 10px rgba(0, 108, 255, 0.3); }
+    100% { box-shadow: 0 4px 12px rgba(0, 108, 255, 0.1), 0 0 0 0px rgba(0, 108, 255, 0.25); }
+}
+
+/* Character Float bounce */
+.character-img.running {
+    animation: character-floating 2s infinite ease-in-out;
+}
+
+@keyframes character-floating {
+    0%, 100% { transform: translate(-50%, -50%) translateY(0px) scale(1); }
+    50% { transform: translate(-50%, -50%) translateY(-10px) scale(1.02); }
+}
+
+/* Star/Finished glow */
+.main-card.finished {
+    outline: 4px solid #1A75FF;
+    outline-offset: 4px;
+}
+
+/* Adjustments for various heights */
+@media (max-height: 800px) {
+    .time-display { font-size: 80px; margin-top: 50px; }
+    .timer-circle-container { width: 350px; height: 350px; }
+    .character-img { width: 200px; height: 200px; }
+    .speech-bubble { top: 40px; font-size: 20px; padding: 10px 20px; }
+    .main-card { padding: 30px; gap: 30px; }
+    .setting-box { padding: 20px; }
+    .quick-btn { padding: 14px 0; font-size: 22px; }
+    .setting-title { font-size: 22px; }
+    .adjust-item span { font-size: 24px; }
+    .action-btn { height: 110px; }
+    .action-btn span { font-size: 18px; }
+    .action-item-icon { width: 44px; height: 44px; margin-bottom: 8px; }
+    .action-item-icon svg { width: 32px; height: 32px; }
+}

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Focus Bear Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <button class="back-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                타이머
+            </button>
+            <button class="close-btn">닫기</button>
+        </header>
+
+        <!-- Main Card Scrollable Area -->
+        <div class="main-card" id="main-card">
+            <!-- Timer Clock digits - Margins adjusted to lower the text slightly -->
+            <div class="time-display" id="time-display">15:00</div>
+
+            <!-- Focus Animation Stage -->
+            <div class="timer-circle-container">
+                <!-- Speech Bubble -->
+                <div class="speech-bubble" id="speech-bubble">화이팅!!<br>끝까지 집중해요!</div>
+                
+                <!-- Progress Circular Arc -->
+                <svg class="progress-svg" viewBox="0 0 300 300">
+                    <circle class="progress-bg" cx="150" cy="150" r="140"></circle>
+                    <circle id="progress-bar" class="progress-bar" cx="150" cy="150" r="140" stroke-dasharray="880" stroke-dashoffset="0"></circle>
+                </svg>
+                
+                <!-- Animated Focus Character (from public/character.png) -->
+                <img src="character.png" alt="Focus Bear" class="character-img" id="char-img">
+            </div>
+
+            <!-- Settings list (Padding-bottom added to prevent any cut-offs) -->
+            <div class="settings-section">
+                <!-- Manual adjust clocks -->
+                <div class="setting-box">
+                    <div class="setting-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <polyline points="12 6 12 12 16 14"></polyline>
+                        </svg>
+                        시간 설정
+                    </div>
+                    <div class="adjust-controls">
+                        <!-- Minute selector -->
+                        <div class="adjust-item">
+                            <button id="min-minus">−</button>
+                            <span id="min-label">15</span>
+                            <span class="unit-label">분</span>
+                            <button id="min-plus">+</button>
+                        </div>
+                        <!-- Second selector -->
+                        <div class="adjust-item">
+                            <button id="sec-minus">−</button>
+                            <span id="sec-label">00</span>
+                            <span class="unit-label">초</span>
+                            <button id="sec-plus">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Instant quick durations -->
+                <div class="setting-box">
+                    <div class="setting-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                        </svg>
+                        빠른 시간 선택
+                    </div>
+                    <div class="quick-grid">
+                        <button class="quick-btn" data-sec="60">1분</button>
+                        <button class="quick-btn" data-sec="180">3분</button>
+                        <button class="quick-btn" data-sec="300">5분</button>
+                        <button class="quick-btn" data-sec="600">10분</button>
+                        <button class="quick-btn active" data-sec="900">15분</button>
+                        <button class="quick-btn" data-sec="1200">20분</button>
+                        <button class="quick-btn" data-sec="1500">25분</button>
+                        <button class="quick-btn" data-sec="1800">30분</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Actions (Horizontally matching the width of the modal card above) -->
+        <div class="bottom-action">
+            <!-- Reset Button -->
+            <button class="action-btn" id="reset-btn">
+                <div class="action-item-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 4v6h-6"></path>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                </div>
+                <span>초기화</span>
+            </button>
+            
+            <!-- Play/Pause Control -->
+            <button class="action-btn primary-action" id="start-btn">
+                <div class="action-item-icon" id="start-icon-container">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                </div>
+                <span id="start-label">시작</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Script triggers -->
+    <script src="script.js"></script>
+</body>
+</html>
